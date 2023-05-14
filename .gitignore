@@ -6,3 +6,4 @@ training-386613-cc8e974b462e.json
 .terraform**
 terraform.tfstate*
 argocd**
+kafka-helm.yaml
