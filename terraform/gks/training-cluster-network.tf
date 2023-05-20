@@ -14,4 +14,5 @@ resource "google_compute_subnetwork" "subnet" {
 resource "google_compute_address" "kafka_static_ip" {
   name   = "kafka-static-ip"
   region = "us-east1"
+  address_type = "EXTERNAL"
 }

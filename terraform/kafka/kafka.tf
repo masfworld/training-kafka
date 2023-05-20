@@ -8,18 +8,8 @@ resource "helm_release" "kafka" {
   namespace  = kubernetes_namespace.kafka.metadata[0].name
 
   set {
-    name  = "service.type"
-    value = "LoadBalancer"
-  }
-
-  set {
     name  = "externalAccess.enabled"
     value = "true"
-  }
-
-  set {
-    name  = "externalAccess.service.port"
-    value = "9092"
   }
 
   set {
@@ -28,7 +18,17 @@ resource "helm_release" "kafka" {
   }
 
   set {
+    name  = "externalAccess.service.type"
+    value = "LoadBalancer"
+  }
+
+  set {
     name  = "externalAccess.service.loadBalancerIPs[0]"
-    value = google_compute_address.kafka_static_ip.address
+    value = local.ip_address
+  }
+
+  set {
+    name  = "rbac.create"
+    value = "true"
   }
 }

@@ -32,8 +32,8 @@ resource "google_container_node_pool" "primary" {
   node_count = 1
 
   node_config {
-    # preemptible  = true
-    machine_type = "n1-standard-1"
+    preemptible  = true
+    machine_type = "n1-standard-2"
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform"
     ]
