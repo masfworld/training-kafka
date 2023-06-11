@@ -16,6 +16,10 @@ resource "google_container_cluster" "primary" {
   remove_default_node_pool = true
   initial_node_count       = 1
 
+  workload_identity_config {
+    workload_pool = "${data.google_client_config.provider.project}.svc.id.goog"
+  }
+
   master_auth {
     client_certificate_config {
       issue_client_certificate = false
@@ -33,10 +37,13 @@ resource "google_container_node_pool" "primary" {
 
   node_config {
     preemptible  = true
-    machine_type = "n1-standard-2"
+    machine_type = "n1-standard-1"
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform"
     ]
+    workload_metadata_config {
+      mode = "GKE_METADATA"
+    }
   }
 }
 

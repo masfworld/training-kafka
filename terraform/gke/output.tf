@@ -19,3 +19,8 @@ output "kafka_static_ip" {
   value       = google_compute_address.kafka_static_ip.address
   description = "The static IP for Kafka"
 }
+
+output "google_service_account_sa_email" {
+  value       = google_service_account.sa.email
+  description = "The static IP for Kafka"
+}

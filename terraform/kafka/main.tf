@@ -1,7 +1,7 @@
 data "terraform_remote_state" "primary" {
   backend = "local"
   config = {
-    path = "../gks/terraform.tfstate"
+    path = "../gke/terraform.tfstate"
   }
 }
 

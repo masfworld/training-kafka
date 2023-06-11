@@ -1,7 +1,7 @@
 *.gpg
 secrets.yaml
 secrets.enc.yaml
-training-386613-cc8e974b462e.json
+credentials.json
 .terraform*
 .terraform**
 terraform.tfstate*

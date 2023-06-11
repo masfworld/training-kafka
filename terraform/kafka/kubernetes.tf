@@ -1,27 +1,8 @@
 resource "kubernetes_namespace" "kafka" {
   metadata {
+    annotations = {
+      "iam.gke.io/gcp-service-account" = data.terraform_remote_state.primary.outputs.google_service_account_sa_email
+    }
     name = "kafka"
   }
 }
-
-# resource "kubernetes_service" "kafka_service" {
-#   metadata {
-#     name      = "kafka-external"
-#     namespace = kubernetes_namespace.kafka.metadata[0].name
-#   }
-
-#   spec {
-#     selector = {
-#       app = "kafka"
-#     }
-
-#     port {
-#       port        = 9092
-#       target_port = 9092
-#     }
-
-#     type = "LoadBalancer"
-
-#     load_balancer_ip = local.ip_address
-#   }
-# }
