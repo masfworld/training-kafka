@@ -10,7 +10,7 @@ resource "kubernetes_deployment" "python_kafka_producer" {
   }
 
   spec {
-    replicas = 0
+    replicas = 1
 
     selector {
       match_labels = {
@@ -22,7 +22,7 @@ resource "kubernetes_deployment" "python_kafka_producer" {
       metadata {
         labels = {
           App = "python-twitter-kafka"
-        } 
+        }
       }
 
       spec {
