@@ -29,7 +29,6 @@ def access_secret_version(project_id, secret_id, version_id):
 
 # Access the secret using the function
 BEARER_TOKEN = access_secret_version("training-386613", "BEARER_TOKEN", "latest")
-print(BEARER_TOKEN)
 
 # Read environment variables
 KAFKA_BOOTSTRAP_SERVER = os.environ['KAFKA_BOOTSTRAP_SERVER']
