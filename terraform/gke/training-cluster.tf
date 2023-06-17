@@ -44,6 +44,10 @@ resource "google_container_node_pool" "primary" {
     workload_metadata_config {
       mode = "GKE_METADATA"
     }
+
+    # Update disk type and capacity
+    disk_type = "pd-standard"
+    disk_size_gb = 10
   }
 }
 
