@@ -29,7 +29,7 @@ resource "kubernetes_deployment" "python_kafka_producer" {
         service_account_name = kubernetes_service_account.app_service_account.metadata[0].name  # specify the service account
 
         container {
-          image = "masfworld/python-twitter-kafka:latest"
+          image = "masfworld/python-twitter-kafka:0.1"
           name  = "python-twitter-kafka"
 
           image_pull_policy = "Always"
