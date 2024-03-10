@@ -1,0 +1,6 @@
+kafka:
+  clusters:
+    -
+      name: KafkaGKE
+      # Bootstrap Server is the result of gcloud compute addresses describe kafka-static-ip --region=us-east1:9094
+      bootstrapServers: public_ip:9094

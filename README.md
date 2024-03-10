@@ -23,14 +23,14 @@ Terraform code to deploy GKS cluster with Apache Kafka using a static IP
 
 #### Deploy GKS
 ```
-cd terraform/gks
-terraform apply --auto-aprove
+cd terraform/gke
+terraform apply -auto-approve
 ```
 
 #### Deploy Kafka
 ```
 cd terraform/kafka
-terraform apply --auto-aprove
+terraform apply -auto-approve
 ```
 
 #### Check Static IP address
@@ -41,3 +41,14 @@ terraform apply --auto-aprove
 
 #### Run python script to replicate Tweets
 You will need to create a secret in Google Cloud called `BEARER_TOKEN` which contains the token to use with Twitter
+
+#### Run Kafka UI in Docker local
+```
+docker run -d \
+  --name kafka-ui \
+  -p 8080:8080 \
+  -e DYNAMIC_CONFIG_ENABLED='true' \
+  -v [Absolute path]/kafka-ui/config.yml:/etc/kafkaui/dynamic_config.yaml \
+  provectuslabs/kafka-ui:latest
+
+```

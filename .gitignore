@@ -7,3 +7,4 @@ credentials.json
 terraform.tfstate*
 argocd**
 kafka-helm.yaml
+.DS_Store
