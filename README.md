@@ -42,13 +42,32 @@ terraform apply -auto-approve
 #### Run python script to replicate Tweets
 You will need to create a secret in Google Cloud called `BEARER_TOKEN` which contains the token to use with Twitter
 
+#### Run python script to replicate Toots
+Likely you will need to grant access to service account to access to `MASTODON_ACCESS_TOKEN` secret in GCP
+```
+# Get service account email in from gke output
+terraform output google_service_account_sa_email 
+
+# Before grant access, login with an account with `setIamPolicy` privileges
+gcloud config set account admin_account
+
+# Grant access to the service account to access to GCP Secret Manager
+gcloud projects add-iam-policy-binding YOUR_PROJECT_ID \
+    --member=serviceAccount:YOUR_SERVICE_ACCOUNT_EMAIL \
+    --role=roles/secretmanager.secretAccessor
+```
+
+
 #### Run Kafka UI in Docker local
 ```
 docker run -d \
   --name kafka-ui \
   -p 8080:8080 \
   -e DYNAMIC_CONFIG_ENABLED='true' \
-  -v [Absolute path]/kafka-ui/config.yml:/etc/kafkaui/dynamic_config.yaml \
+  -v /Users/miguel/Training/training-kafka/kafka-ui/config.yml:/etc/kafkaui/dynamic_config.yaml \
   provectuslabs/kafka-ui:latest
 
-```
+````
+
+#### Renew access token
+`gcloud auth print-access-token --impersonate-service-account=google-app-service-account@training-386613.iam.gserviceaccount.com`
